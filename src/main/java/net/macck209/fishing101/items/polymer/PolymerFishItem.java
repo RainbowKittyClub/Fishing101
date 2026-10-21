@@ -46,9 +46,9 @@ public class PolymerFishItem extends Item implements PolymerAutoItem {
         this.returnItem = returnItem;
     }
 
-    private PolymerFishItem(Item polymerItem, Builder builder) {
+    private PolymerFishItem(Builder builder) {
         super(builder.settings);
-        this.polymerItem = polymerItem;
+        this.polymerItem = builder.polymerItem;
         this.color = builder.color;
         this.isChorus = builder.isChorus;
         this.isCharged = builder.isCharged;
@@ -92,7 +92,7 @@ public class PolymerFishItem extends Item implements PolymerAutoItem {
         }
 
         public PolymerFishItem build() {
-            return new PolymerFishItem(this.polymerItem, this);
+            return new PolymerFishItem(this);
         }
     }
 
