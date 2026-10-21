@@ -1,7 +1,10 @@
 package net.macck209.fishing101.items.polymer;
 
 import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import net.macck209.fishing101.polymer.NoPackFallbacks;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -40,6 +43,14 @@ public class PolymerArmorItem extends Item implements PolymerAutoItem {
 	@Override
 	public Item getPolymerItem(ItemStack itemStack, PacketContext packetContext) {
 		return this.polymerItemBase;
+	}
+
+	@Override
+	public void modifyBasePolymerItemStack(ItemStack out, ItemStack stack, PacketContext context, HolderLookup.Provider lookup) {
+		// Without the pack the client has no texture for our equipment asset; show the base item's.
+		if (NoPackFallbacks.lacksPack(context)) {
+			out.set(DataComponents.EQUIPPABLE, this.polymerItemBase.components().get(DataComponents.EQUIPPABLE));
+		}
 	}
 
 	@Override
