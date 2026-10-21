@@ -48,6 +48,11 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
+
+	// server-translations reads data/<ns>/lang, so clients without the pack get names too.
+	from("src/main/resources/assets/fishing101/lang") {
+		into "data/fishing101/lang"
+	}
 }
 
 tasks.withType(JavaCompile).configureEach {
