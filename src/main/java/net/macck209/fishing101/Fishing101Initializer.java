@@ -2,6 +2,7 @@ package net.macck209.fishing101;
 
 import net.macck209.fishing101.items.Fishing101Components;
 import net.macck209.fishing101.loot.Fishing101Loot;
+import net.macck209.fishing101.polymer.NoPackFallbacks;
 import net.macck209.fishing101.polymer.PolymerTextures;
 import net.macck209.fishing101.registries.ItemRegistry;
 import net.minecraft.resources.Identifier;
@@ -19,6 +20,7 @@ public class Fishing101Initializer implements net.fabricmc.api.ModInitializer {
 	@Override
 	public void onInitialize() {
 		PolymerTextures.setup(MOD_ID);
+		NoPackFallbacks.register();
 
 		Fishing101Components.register();
 		ItemRegistry.register();
